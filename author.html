@@ -2,31 +2,46 @@
 <html>
   <head>
     <title>First JavaScript file</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1><i>Author entry Shiva Kumar Reddy Bakkanngari</i></h1>
-    <h2>Getting input</h2>
+    <main>
+      <h1><i>Author entry Shiva Kumar Reddy Bakkanngari</i></h1>
+      <h2>Getting input</h2>
 
-    <form>
-      <label
-        >This hidden author name
-        <input
-          type="password"
-          name="hidden"
-          id="hidden-author"
-          value="Dickens"
-        /> </label
-      ><br />
-      <label
-        >Guess the author
-        <input type="text" name="Guess" id="guess-author" /> </label
-      ><br />
-      <input type="button" onclick="checkAuthor()" value="Check the guess" />
-    </form>
-    <div id="result"></div>
+      <form>
+        <label
+          >This hidden author name
+          <input
+            type="password"
+            name="hidden"
+            id="hidden-author"
+            value="Dickens"
+          /> </label
+        ><br />
+        <label
+          >Guess the author
+          <input type="text" name="Guess" id="guess-author" /> </label
+        ><br />
+        <input type="button" onclick="checkAuthor()" value="Check the guess" />
+      </form>
+      <div id="result"></div>
+      <br />
+      <br />
+      <div class="container">
+        <h2>Change an image</h2>
+        <img
+          id="change-img"
+          src="Kolkata.jpeg"
+          alt="Kolkata"
+          onclick="selectImage()"
+        />
+      </div>
+    </main>
     <script>
       let good = 0;
       let oops = 0;
+      let useImage = 1;
 
       const checkAuthor = () => {
         let hiddenAuthor = document.getElementById("hidden-author").value;
@@ -40,6 +55,26 @@
           alert("Sorry");
         }
         result.innerHTML = `<p> Good -${good} and oops- ${oops}`;
+      };
+
+      const selectImage = () => {
+        let imageSrc = document.getElementById("change-img");
+        switch (useImage) {
+          case 1:
+            useImage = 2;
+            imageSrc.src = "NewYork.jpeg";
+            break;
+          case 2:
+            useImage = 3;
+            imageSrc.src = "Beijing.jpeg";
+            break;
+          case 3:
+            useImage = 1;
+            imageSrc.src = "Kolkata.jpeg";
+            break;
+          default:
+            break;
+        }
       };
     </script>
   </body>
