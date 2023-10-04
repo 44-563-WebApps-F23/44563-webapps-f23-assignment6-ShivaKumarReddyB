@@ -5,21 +5,58 @@
   </head>
   <body>
     <h2><i>Show tips amount Shiva Kumar Reddy Bakkannagari</i></h2>
+    <div>
+      <form>
+        <label for="form1_age">Enter base amount</label>
+        <input type="number" id="base-amount" name="base-amount" value="50" />
+        <br />
 
-    <form>
-      <label for="form1_age">Enter base amount</label>
-      <input type="number" id="base-amount" name="base-amount" value="50" />
-      <br />
+        <label for="form1_nick">Enter the tip percent </label>
+        <input type="number" id="tip-percentage" name="form1_nick" value="15" />
+        <br />
 
-      <label for="form1_nick">Enter the tip percent </label>
-      <input type="number" id="tip-percentage" name="form1_nick" value="15" />
-      <br />
+        <input type="button" onclick="tips()" value="Show tip" />
+      </form>
 
-      <input type="button" onclick="tips()" value="Show tip" />
-    </form>
+      <p id="result">This text will be replaced</p>
+    </div>
+    <div>
+      <form>
+        <label for="cal-sum">
+          <input
+            type="radio"
+            placeholder="sum"
+            name="calTips"
+            id="cal-sum"
+            value="sum"
+            onclick="chooseOp()"
+          />
+          sum </label
+        ><label for="cal-diff">
+          <input
+            type="radio"
+            name="calTips"
+            placeholder="difference"
+            id="cal-diff"
+            value="diff"
+            onclick="chooseOp()"
+          />
+          difference </label
+        ><label for="cal-mult">
+          <input
+            type="radio"
+            name="calTips"
+            placeholder="product"
+            id="cal-mult"
+            value="mult"
+            onclick="chooseOp()"
+          />
+          product
+        </label>
+      </form>
 
-    <p id="result">This text will be replaced</p>
-
+      <div id="checkedResult"></div>
+    </div>
     <script>
       const tips = () => {
         let baseValue = document.getElementById("base-amount").value;
@@ -31,6 +68,29 @@
           tipValue += 4;
         }
         document.getElementById("result").innerHTML = `Tips are: ${myOutput}`;
+      };
+      const chooseOp = () => {
+        let baseValue = Number(document.getElementById("base-amount").value);
+        let tipValue = Number(document.getElementById("tip-percentage").value);
+        let inputSum = document.getElementById("cal-sum");
+        let inputDiff = document.getElementById("cal-diff");
+        let inputMult = document.getElementById("cal-mult");
+        let output;
+        let label;
+        console.log(typeof baseValue);
+        if (inputSum.checked) {
+          output = baseValue + tipValue;
+          label = inputSum.placeholder;
+        } else if (inputDiff.checked) {
+          output = baseValue - tipValue;
+          label = inputDiff.placeholder;
+        } else if (inputMult.checked) {
+          label = inputMult.placeholder;
+          output = baseValue * tipValue;
+        }
+        document.getElementById(
+          "checkedResult"
+        ).innerHTML = `${label} of ${baseValue} and ${tipValue} is ${output}`;
       };
     </script>
   </body>
